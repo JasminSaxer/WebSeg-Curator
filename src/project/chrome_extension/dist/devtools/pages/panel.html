@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Devtools Panel</title><style>.horizontal-layout{display:flex;justify-content:space-between}.horizontal-layout>div{flex:1;margin:0 10px}.vertical-layout{display:block}</style></head><body> <div> <h3>User id: <span id="userId"></span></h3> <button id="getUserId">Get User ID</button> <button id="goToOptions">Go to option to edit User ID</button> </div> <div> <h3>Rules for Segmentation</h3> <p>Segment largest possible Box with ...<br> • more information<br> • the same topic<br> • visually coherent box</p> <p><u>Tag Normal Segmentation and the same Segments also with DIGILOG labels (unless not interesting, can skip)!</u> </p> <h3>Tag selected HTML element as...</h3> <button id="toggleLayout">Toggle Layout</button> <div id="segmentationContainer" class="vertical-layout"> <div> <h4>Normal Segmentation</h4> <ul> <li><button id="title">Title</button></li> <li><button id="header">Header</button></li> <li><button id="nav">Navigation</button></li> <li><button id="maincontent">Main content</button></li> <li><button id="footer">Footer</button></li> <li><button id="advertisement">Advertisement</button></li> <li><button id="image">Image</button></li> </ul> </div> <div> <h4>DIGILOG Labeling Segmentation</h4> <ul> <li> <button id="0">0</button> <b title="Information 1.0:
+  Information with Action from User​
+  - Downloads for Information / List of downloads (PDFs, etc.) !NOT FORMS
+    All data to download which is information, (also video etc)">Information 1.0 </b> </li><li> <button id="1">1</button> <b title="Information 2.0:
+  - Social Media (Link / Icon to Social Media)
+  - Apps (Link / Icon to App)
+  - Newsletter
+  NOT FORMS! -> go to Transaction... ">Information 2.0</b> </li><li> <button id="2">2</button> <b title="Interaction / Communication 
+  - Contact ​
+    not in continuous text, e.g. address header​
+      e-mail​
+      Phone​
+      Address​
+    Or if the whole page consists of contacts  
+    In header, footer or maincontent​
+    
+    NOT FORMS!​">Interaction</b> </li><li> <button id="3">3</button> <b title="Transaction 1.0 (Indication):
+    - indication of transaction (but not visible on this very page)
+    - link to transaction (link not leaving domain)
+    - e.g. Link to Page with E-Service / Form">Transaction 1.0 (Indication)</b> </li><li> <button id="4">4 </button> <b title="Transaction 2.0:
+  - interrupted Transaction
+  - download form to send in
+  - uploading forms">Transaction 2.0 <font size="+1">&#8696;</font></b> </li><li> <button id="5">5</button> <b title="Transaction 3.0:
+  uninterrupted transaction
+   - E-forms
+   - Shopping
+   - Services fully online
+   - Booking a Meeting
+  All Forms which look uninterrupted​
+  - Also newsletter or contact">Transaction 3.0 <font size="+1">&#8674;</font></b> </li><li> <button id="6">6</button> <b title="Integration 1.0:
+  Promotion of third party E-Services
+   - Link to E-Service from other organisation / website
+   - e.g. Link to Passport Office
+   - Link to E-moving website
+   - Link to E-Services which cant be made on this website (e.g. municipality)
+   - Link to online booking of hotel etc.">Integration 1.0 (Indication)</b> </li><li> <button id="7">7</button> <b title="Integration 2.0:
+  Provision of third party online serivce​
+  - e.g. book hut on municipality website​ 
+  - e.g. Rent a flat from university website">Integration 2.0 </b> </li></ul> </div> </div> </div> <script src="/panel.64a7e6a9.js"></script> </body></html>

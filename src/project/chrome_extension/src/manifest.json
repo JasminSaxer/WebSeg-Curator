@@ -1,0 +1,65 @@
+{
+  "manifest_version": 2,
+  "name": "Content Extraction Manager Template",
+  "version": "1.0",
+  "description": "Content Extraction Framework",
+  "author": "Jasmin Saxer (adapted from Geunseong Jung)",
+  "homepage_url": "https://github.com/JasminSaxer/content-extraction-framework",
+  "background": {
+    "scripts": [
+      "background/index.ts"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "inject/index.ts"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "devtools_page": "devtools/index.html",
+  "options_page": "options/index.html",
+  "web_accessible_resources": [
+    "devtools/index.html",
+    "devtools/pages/panel.html",
+    "background/domdistiller/*"
+  ],
+  "permissions": [
+    "activeTab",
+    "<all_urls>",
+    "pageCapture",
+    "contextMenus",
+    "webNavigation",
+    "downloads",
+    "storage",
+    "downloads.open",
+    "tabs",
+    "windows",
+    "system.display",
+    "http://*/",
+    "https://*/",
+    "allow-scripts"
+  ],
+  "host_permissions":[
+    "http://*/",
+    "https://*/"
+  ],
+  "commands": {
+    "next_action" : {
+      "suggested_key": {
+            "default": "Ctrl+Shift+Right"
+      },
+      "description": "Go next page"
+    },
+    "prev_action": {
+      "suggested_key": {
+          "default": "Ctrl+Shift+Left"
+      },
+      "description": "Go prev page"
+    }
+  }
+} 

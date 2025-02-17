@@ -1,0 +1,88 @@
+version: "3"
+
+services:
+  node:
+    image: node:14
+    volumes:
+      - .:/workspace
+    tty: true
+    stdin_open: true
+    ports:
+      - ${API_PORT:-59000}:8000
+      - ${MHTML_PORT:-59010}:8001
+    command: /bin/bash -c "cd /workspace/project/api && yarn start && tail -f /dev/null"
+  pg:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: digilog
+    expose:
+      - "5432"
+    volumes:
+      - ./dbhome:/home
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - "PGADMIN_DEFAULT_EMAIL=${PGADMIN_LOGIN_EMAIL:-admin@test.com}"
+      - "PGADMIN_DEFAULT_PASSWORD=${PGADMIN_LOGIN_PASSWORD:-digilog}"
+    ports:
+      - ${PGADMIN_PORT:-59001}:80
+  mongo-express:
+    image: mongo-express
+    depends_on: 
+      - mongo
+      - mongodb-secondary
+      - mongodb-arbiter
+    ports:
+      - ${MONGO_EXPRESS_PORT:-59002}:8081
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://root:digilog@mongo:27017/admin?authSource=admin&replicaset=replicaset
+      - ME_CONFIG_BASICAUTH=true
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=digilog
+    restart: always
+
+  mongo:
+    image: 'bitnami/mongodb:4.4'
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongo
+      - MONGODB_REPLICA_SET_MODE=primary      
+      - MONGODB_ROOT_PASSWORD=digilog
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+    volumes:
+      - './dbhome:/home'
+      - 'mongodb_master_data:/bitnami'
+    ports:
+      - '27017:27017'
+    expose:
+      - 27017
+
+  mongodb-secondary:
+    image: 'bitnami/mongodb:4.4'
+    depends_on:
+      - mongo
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-secondary
+      - MONGODB_REPLICA_SET_MODE=secondary
+      - MONGODB_INITIAL_PRIMARY_HOST=mongo
+      - MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=digilog
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+    expose:
+      - 27017
+
+  mongodb-arbiter:
+    image: 'bitnami/mongodb:4.4'
+    depends_on:
+      - mongo
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-arbiter
+      - MONGODB_REPLICA_SET_MODE=arbiter
+      - MONGODB_INITIAL_PRIMARY_HOST=mongo
+      - MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=digilog
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+    expose:
+      - 27017
+
+volumes:
+  mongodb_master_data:
+    driver: local
+  

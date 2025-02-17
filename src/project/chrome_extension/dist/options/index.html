@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Options Page</title></head><body> <div style="display:flex;"> <div> <div> <h3>Connections</h3> <div><button id="setDefaultHost">Reset to default</button></div> </div> <div>API Server: <input id="host" name="host" placeholder="http://..."> <span id="api-status">Connecting...</span> </div> <div>MHTML Server: <input id="mhtml-api" name="mhtml-api" placeholder="http://..."><span id="mhtml-status">Connecting...</span> <div><a href="http://160.85.252.105:59002/db/maincontent/">MongoExpress</a></div> <div><a href="http://160.85.252.105:59001/">Postgres (pgAdmin)</a></div> <div><a href="https://zhaw.sharepoint.com/:p:/r/sites/IISPatternGroup/Freigegebene%20Dokumente/General/Projekte/Digilog/dataset_public_services/labeling-examples/Labeling_Instructions_Examples.pptx?d=w8845328bcb054d93a35b31f6732f585d&csf=1&web=1&e=HwggLr">Labeling Instructions (PowerPoint)</a></div> </div> </div> <div> <h3>Configurations</h3> <div> userId: <input id="userId" name="userId" placeholder="User Id"> <span id="savingStatus">Saving...</span> </div> <div style="display:none;"> cursor: <input id="cursor" name="cursor" placeholder="Page Number"> </div> </div> </div> <div> <div> <h3>Sources</h3> <button id="load-source">refresh</button> <span id="status-source">loading...</span> </div> <table id="sources"> <thead> <tr> <th>Name</th> <th>Count</th> <th>Crawl</th> <th>Curation</th> <th>Number of Curators</th> <th>Checkbox</th> </tr> </thead> <tbody> </tbody> </table> </div> <div> <div style="display:flex"> <div style="margin-right:5px;"> <h5>Running Options</h5> <div> <textarea id="config-text" name="config-text" placeholder="crawl: 
+  watch: true
+  auto: true
+curation: 
+  startLastCurated: true
+  showAllUsers: false" style="height:400px;width:600px;"></textarea> </div> </div> <div> <h5>Applied (Parsed) Configuration</h5> <pre style="font-size:1.2em;" id="json-validity">Empty field</pre> </div> </div> <div> <h5>Example Configurations</h5> <pre>crawl: 
+  watch: true
+  auto: true
+curation: 
+  startLastCurated: true
+  showAllUsers: false</pre> </div> </div> <div> <ul id="executable"></ul> </div> <script src="/options.d4686127.js"></script> </body></html>
